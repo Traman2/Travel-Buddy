@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "travelbuddy",
-    "slug": "travelbuddy",
+    "slug": "travel-buddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "04df5bad-fd6c-4e83-920f-2fc385292ba5"
+      }
+    },
+    "owner": "tejasraman"
   }
 }
