@@ -6,7 +6,9 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const CARD_WIDTH = SCREEN_WIDTH - 24; // Account for mx-3 padding
+const CARD_SPACING = 12;
+const CARD_WIDTH = SCREEN_WIDTH - (CARD_SPACING * 2);
+const SIDE_PADDING = CARD_SPACING;
 
 export default function HomeScreen() {
   const { profile } = useSession();
@@ -15,7 +17,7 @@ export default function HomeScreen() {
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
-    const index = Math.round(scrollPosition / CARD_WIDTH);
+    const index = Math.round(scrollPosition / (CARD_WIDTH + CARD_SPACING));
     setActiveCardIndex(index);
   };
 
@@ -38,12 +40,13 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
-          snapToInterval={CARD_WIDTH}
+          snapToInterval={CARD_WIDTH + CARD_SPACING}
+          snapToAlignment="start"
           decelerationRate="fast"
-          contentContainerStyle={{ paddingHorizontal: 12 }}
+          contentContainerStyle={{ paddingLeft: SIDE_PADDING, paddingRight: SIDE_PADDING }}
         >
           {/* Card 1 - Monthly Balance */}
-          <View className='py-4 px-4 bg-[#cffafe] rounded-xl mr-3' style={{ width: CARD_WIDTH }}>
+          <View className='py-4 px-4 bg-[#cffafe] rounded-xl' style={{ width: CARD_WIDTH, marginRight: CARD_SPACING }}>
             <View className='flex-row justify-between'>
               <View>
                 <View className='flex-row items-center gap-2 mb-4'>
